@@ -12,7 +12,7 @@ $groups = Get-AzureRmResourceGroup -Name $rgName
 #Tag all resources in a resource group
 foreach ($g in $groups) 
 {
-    Find-AzureRmResource -ResourceGroupNameEquals $g.ResourceGroupName | ForEach-Object {Set-AzureRmResource -ResourceId $_.ResourceId -Tag @{ App="RDS"; Environment="Demo"; TimeZone="EST"; StartTime="8:00"; EndTime="18:00" } -Force } 
+    Find-AzureRmResource -ResourceGroupNameEquals $g.ResourceGroupName | ForEach-Object {Set-AzureRmResource -ResourceId $_.ResourceId -Tag @{ Owner="MSP"; Environment="Infra";Project="Hackathon" } -Force } 
 }
 
 
