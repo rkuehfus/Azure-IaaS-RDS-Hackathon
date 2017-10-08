@@ -30,7 +30,7 @@ $subscriptionId = '<SubIDGUID>'
 Select-AzureRmSubscription -SubscriptionId $subscriptionId
 
 #Update TagName and TagValue for your environment
-$TagResults = (Find-AzureRmResource -TagName App -TagValue RDS) | ? {$_.ResourceType -eq 'Microsoft.Compute/virtualMachines'}
+$TagResults = (Find-AzureRmResource -TagName Project -TagValue Hackathon) | ? {$_.ResourceType -eq 'Microsoft.Compute/virtualMachines'}
 
 foreach ($Result in $TagResults){
     $VM = Get-AzureRmVM -Name $Result.Name -ResourceGroupName $rgName
