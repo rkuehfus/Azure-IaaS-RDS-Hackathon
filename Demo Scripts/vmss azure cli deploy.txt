@@ -1,0 +1,8 @@
+az group create --name LinuxScaleSet --location southcentralus
+
+az vmss create --resource-group LinuxScaleSet --name SiriusScaleSet --image Canonical:UbuntuServer:16.04-LTS:latest --upgrade-policy-mode automatic --custom-data cloud-init.txt --admin-username azureuser --ssh-key-value sirius.pub
+
+az network lb probe create -g LinuxScaleSet --lb-name SiriusScaleSetLB --name http --protocol Http --port 80 --path / --interval 5 --threshold 2
+
+az network lb rule create -g LinuxScaleSet --lb-name SiriusScaleSetLB --name rule1 --protocol Tcp --frontend-port 80 --backend-port 80
+
