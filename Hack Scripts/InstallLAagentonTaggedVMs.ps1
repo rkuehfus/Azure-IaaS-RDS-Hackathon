@@ -22,12 +22,12 @@ catch {
     }
 } 
 
-$rgName = 'RDSHackathon'
-$subscriptionId = '8b2ef784-0c0d-424c-8a7a-aa1304a0366a'
+$rgName = <Resource Group Name>
+$subscriptionId = <Subscription Name
 
 Select-AzureRMSubscription -SubscriptionId $subscriptionId
 
-$workspaceName = "RDSHackathon"
+$workspaceName = <OMS WorkSpace Name>
 $workspace = (Get-AzureRmOperationalInsightsWorkspace).Where({$_.Name -eq $workspaceName})
 
 if ($workspace.Name -ne $workspaceName)
@@ -39,8 +39,6 @@ $workspaceId = $workspace.CustomerId
 $workspaceKey = (Get-AzureRmOperationalInsightsWorkspaceSharedKeys -ResourceGroupName $workspace.ResourceGroupName -Name $workspace.Name).PrimarySharedKey
 
 
-$rgName = 'RDSHackathon'
-$subscriptionId = '8b2ef784-0c0d-424c-8a7a-aa1304a0366a'
 Select-AzureRmSubscription -SubscriptionId $subscriptionId
 
 $TagResults = (Find-AzureRmResource -TagName Project -TagValue Hackathon) | ? {$_.ResourceType -eq 'Microsoft.Compute/virtualMachines'}
